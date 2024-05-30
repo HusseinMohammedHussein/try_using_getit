@@ -1,16 +1,28 @@
-# usegetit
+# Try Using [git_it](https://pub.dev/packages/get_it) package
 
-A new Flutter project.
+### Usage/Examples
 
-## Getting Started
+```dart
+import 'package:get_it/get_it.dart';
 
-This project is a starting point for a Flutter application.
+GetIt sl = GetIt.instance;
 
-A few resources to get you started if this is your first Flutter project:
+void initServiceLocator() {
+  sl.registerSingleton<MyModel>(MyModel());
+}
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+void main() {
+  initServiceLocator();
+  runApp(const MyApp());
+}
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+void usage() {
+    setState(() {
+        _counter++;
+        sl.get<MyModel>().x = _counter;
+        result = sl.get<MyModel>().x;
+    });
+}
+```
+
+
